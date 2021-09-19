@@ -75,18 +75,23 @@ class _AllExpenseScreenState extends State<AllExpenseScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text("Owed by: ${a.ower}"),
-                Text("Amt: ${a.amount}"),
-              ],
+            Expanded(
+
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(flex:10, child: Text("Owed by: ${a.ower}")),
+                  SizedBox(width: 10,),
+                  Expanded(flex:3, child:Text("Amt: ${a.amount}")),
+                ],
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Owed to: ${a.receiver}"),
-                buildButton(a, index),
+                Expanded(flex:10, child: Text("Owed to: ${a.receiver}")),
+                SizedBox(width: 10,),
+                Expanded(flex:3, child:buildButton(a, index),),
               ],
             )
           ],

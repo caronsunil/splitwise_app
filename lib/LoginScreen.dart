@@ -36,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Color(0xFF804FB3),
                 Color(0xFF6A359C),
               ],
-              stops: [0.1, 0.4, 0.7, 0.9],
+              stops: [0.2, 0.5, 0.7, 1],
             ),
           ),
           child: Padding(
@@ -182,7 +182,7 @@ class _LoginScreenState extends State<LoginScreen> {
               decoration: InputDecoration(
                 hintText: 'Enter your Email',
                 border: InputBorder.none,
-                contentPadding: EdgeInsets.only(top: 14.0, left: 8),
+                contentPadding: EdgeInsets.only(top: 14.0, left: 18),
               ),
               onChanged: (String email) {
                 _email = email;
@@ -204,7 +204,7 @@ class _LoginScreenState extends State<LoginScreen> {
             obscureText: true,
             decoration: InputDecoration(
               border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 14.0, left: 8),
+              contentPadding: EdgeInsets.only(top: 14.0, left: 18),
               hintText: 'Enter your Password',
             ),
             onChanged: (String pass) {
