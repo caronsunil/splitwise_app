@@ -108,7 +108,4 @@ class _BalanceScreenState extends State<BalanceScreen> {
       ),
     );
   }
-
-
-
 }

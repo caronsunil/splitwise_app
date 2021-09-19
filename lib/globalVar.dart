@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 Map<String, double> oweMap= Map<String, double>();
 
-List<UserTransactions> transactionList= List<UserTransactions>();
-
 class UserTransactions{
   double amount;
   String receiver;

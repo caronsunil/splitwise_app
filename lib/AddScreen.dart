@@ -30,12 +30,6 @@ class _AddScreenState extends State<AddScreen> {
     Toast.show("Added ${userfieldText.text}", context, backgroundColor: Colors.white, gravity: Toast.CENTER, textColor: Colors.black);
   }
 
-  Future<String> get_data(DocumentReference doc_ref) async {
-    DocumentSnapshot docSnap = await doc_ref.get();
-    var doc_id2 = docSnap.reference.id;
-    return doc_id2;
-  }
-
   void addTransaction() async{
     double totalAmt;
     int len;
@@ -62,27 +56,20 @@ class _AddScreenState extends State<AddScreen> {
         'ower': ower,
         'amount': amt,
       });
-      String documentID = await get_data(doc);
       print("$ower $amt added");
-      updateMapList(ower, amt, documentID);
+      updateMapList(ower, amt);
     }
     listOfUsers.clear();
     amount.clear();
     Toast.show("Expense Added!", context, backgroundColor: Colors.white, gravity: Toast.CENTER, textColor: Colors.black);
   }
 
-  void updateMapList(String ower, double amt, String docID){
+  void updateMapList(String ower, double amt){
     if(oweMap.containsKey(ower)){
       oweMap.update(ower, (value) => value - amt);
       if(oweMap[ower]==0.0)oweMap.remove(ower);
     }
     else oweMap[ower]=0-amt;
-    UserTransactions a=UserTransactions();
-    a.id=docID;
-    a.amount=amt;
-    a.receiver=FirebaseAuth.instance.currentUser.email;
-    a.ower=ower;
-    transactionList.add(a);
   }
 
   @override

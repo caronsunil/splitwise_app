@@ -89,7 +89,6 @@ class _MyHomePageState extends State<MyHomePage> {
     }
     else{
       oweMap.clear();
-      transactionList.clear();
       await updateMapList();
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => HomeScreen(oweMap: oweMap)));
@@ -115,25 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
           if(oweMap[doc[ower]]==0.0)oweMap.remove(doc[ower]);
         }
-        String documentID = await get_data(doc);
-        updateList(doc[ower], doc[amount], documentID, doc[receiver]);
-        print(doc[ower]);
       });
     });
   }
-
-  void updateList(String owerFunc, double amt, String docID,String receiverFunc){
-    UserTransactions a=UserTransactions();
-    a.id=docID;
-    a.amount=amt;
-    a.receiver=receiverFunc;
-    a.ower=owerFunc;
-    transactionList.add(a);
-  }
-
-  Future<String> get_data(DocumentSnapshot docSnap) async {
-    var doc_id2 = docSnap.reference.id;
-    return doc_id2;
-  }
-
 }

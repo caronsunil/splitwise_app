@@ -103,7 +103,6 @@ class _LoginScreenState extends State<LoginScreen> {
         password: _password,
       );
       oweMap.clear();
-      transactionList.clear();
       await updateMapList();
 
       Toast.show("Successful Login!", context, backgroundColor: Colors.white, gravity: Toast.CENTER, textColor: Colors.black);
@@ -146,25 +145,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
           if(oweMap[doc[ower]]==0.0)oweMap.remove(doc[ower]);
         }
-        String documentID = await get_data(doc);
-        updateList(doc[ower], doc[amount], documentID, doc[receiver]); //POSSIBLE ERROR? Try doc.id
-        print(doc[ower]);
       });
     });
-  }
-
-  void updateList(String owerFunc, double amt, String docID,String receiverFunc){
-    UserTransactions a=UserTransactions();
-    a.id=docID;
-    a.amount=amt;
-    a.receiver=receiverFunc;
-    a.ower=owerFunc;
-    transactionList.add(a);
-  }
-
-  Future<String> get_data(DocumentSnapshot docSnap) async {
-    var doc_id2 = docSnap.reference.id;
-    return doc_id2;
   }
 
   Widget buildEmailTF(){

@@ -88,8 +88,6 @@ class _EditTransactionState extends State<EditTransaction> {
         oweMap.update(widget.a.ower, (value) => value + difference);
         if (oweMap[widget.a.ower] == 0.0) oweMap.remove(widget.a.ower);
       }
-      transactionList[widget.transListIndex].amount = newAmt;
-
       await FirebaseFirestore.instance.collection('Expense')
           .doc(widget.a.id)
           .set({
@@ -104,7 +102,6 @@ class _EditTransactionState extends State<EditTransaction> {
   }
 
   void deleteTransaction() async{
-    transactionList.removeAt(widget.transListIndex);
     if(oweMap.containsKey(widget.a.ower)) {
       oweMap.update(widget.a.ower, (value) => value + widget.a.amount);
       if (oweMap[widget.a.ower] == 0.0) oweMap.remove(widget.a.ower);
