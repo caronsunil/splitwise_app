@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'globalVar.dart';
 import 'package:toast/toast.dart';
+import 'package:email_validator/email_validator.dart';
 
 class AddScreen extends StatefulWidget {
   @override
@@ -19,8 +20,13 @@ class _AddScreenState extends State<AddScreen> {
 
 
   void addToList(){
+    if(userfieldText.text==null || userfieldText.text.length==0 || !EmailValidator.validate(userfieldText.text)){
+      Toast.show("You must enter a valid user email", context, backgroundColor: Colors.white, gravity: Toast.CENTER, textColor: Colors.black);
+      return;
+    }
     listOfUsers.add(userfieldText.text);
     print(listOfUsers);
+
     Toast.show("Added ${userfieldText.text}", context, backgroundColor: Colors.white, gravity: Toast.CENTER, textColor: Colors.black);
   }
 
@@ -122,7 +128,7 @@ class _AddScreenState extends State<AddScreen> {
               RaisedButton(
                 onPressed: (){
                   listOfUsers.clear();
-                  Toast.show("Removed all users", context, backgroundColor: Colors.white, gravity: Toast.CENTER, textColor: Colors.black);
+                  Toast.show("Removed all users from this transaction", context, backgroundColor: Colors.white, gravity: Toast.CENTER, textColor: Colors.black);
                 },
                 padding: EdgeInsets.all(15.0),
                 shape: RoundedRectangleBorder(
